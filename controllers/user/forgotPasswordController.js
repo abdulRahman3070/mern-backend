@@ -1,9 +1,11 @@
-// controllers/user/ForgotPasswordController.js
-
 const bcrypt = require('bcrypt');
 const userModel = require('../../models/userModel');
 
 module.exports = async (req, res) => {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ message: "Method not allowed" });
+    }
+
     try {
         const { email, answer, newPassword } = req.body;
 
@@ -34,4 +36,3 @@ module.exports = async (req, res) => {
         });
     }
 };
-
