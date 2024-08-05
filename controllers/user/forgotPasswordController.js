@@ -1,19 +1,13 @@
 const bcrypt = require('bcrypt');
-const userModel = require("../../models/userModel");
+const userModel = require('../../models/userModel');
 
 const forgotPasswordController = async (req, res) => {
     try {
         const { email, answer, newPassword } = req.body;
 
         // Validate required fields
-        if (!email) {
-            return res.status(400).json({ message: "Email is Required" });
-        }
-        if (!answer) {
-            return res.status(400).json({ message: "Answer is Required" });
-        }
-        if (!newPassword) {
-            return res.status(400).json({ message: "New Password is Required" });
+        if (!email || !answer || !newPassword) {
+            return res.status(400).json({ message: "All fields are required" });
         }
 
         // Find the user with the provided email and answer
@@ -31,19 +25,19 @@ const forgotPasswordController = async (req, res) => {
 
         // Send success response
         return res.status(200).json({
-            message: "Password Reset Successfully",
-            success: true,
-            error: false
+            message: "Password reset successfully",
+            success: true
         });
 
     } catch (err) {
         console.error(err); // Log the error for debugging
         return res.status(500).json({
-            message: err.message || "Internal Server Error",
-            error: true,
+            message: err.message || "Internal server error",
             success: false
         });
     }
 };
 
-module.exports = forgotPasswordController;
+module.exports = {
+    forgotPasswordController
+};
