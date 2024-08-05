@@ -3,7 +3,7 @@
 const bcrypt = require('bcrypt');
 const userModel = require('../../models/userModel');
 
-const forgotPasswordController = async (req, res) => {
+module.exports = async (req, res) => {
     try {
         const { email, answer, newPassword } = req.body;
 
@@ -35,4 +35,3 @@ const forgotPasswordController = async (req, res) => {
     }
 };
 
-module.exports = forgotPasswordController;
