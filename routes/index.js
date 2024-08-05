@@ -19,7 +19,7 @@ const updateAddToCartProduct = require("../controllers/user/updateAddToCartProdu
 const deleteAddToCartProduct = require("../controllers/user/deleteAddToCartProduct");
 const searchProduct = require("../controllers/product/searchProduct");
 const filterProductController = require("../controllers/product/filterProduct");
-const forgotPasswordController = require("../controllers/user/ForgotPasswordController");
+const forgotPasswordController = require("../controllers/user/forgotPasswordController");
 
 
 const router = express.Router();
