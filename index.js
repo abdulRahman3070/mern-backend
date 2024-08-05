@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const connectDB = require("./config/db");
 const router = require("./routes");
 require("dotenv").config();
-const path = require("path");
 
 const app = express();
 
@@ -19,16 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 app.use(express.json()); 
 
-// Serve static files from the frontend build directory
-app.use(express.static(path.resolve(__dirname, "frontend", "build")));
 
 // API Routes
 app.use("/api", router);
 
-// Serve the frontend application for all non-API routes
-app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-});
+
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 8080;
