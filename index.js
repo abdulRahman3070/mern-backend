@@ -14,21 +14,24 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true
 }));
-app.use(bodyParser.json({ limit: '10mb' })); 
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 app.use(express.json()); 
-// Routes
+
+// Serve static files from the frontend build directory
+app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+
+// API Routes
 app.use("/api", router);
 
-// Connect to MongoDB and start server
-const PORT = process.env.PORT || 8080;
-
-app.get("/", (req, res) => {
-  app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+// Serve the frontend application for all non-API routes
+app.get("/*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 });
 
+// Connect to MongoDB and start server
+const PORT = process.env.PORT || 8080;
 
 connectDB().then(() => {
   app.listen(PORT, () => {
