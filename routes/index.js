@@ -21,43 +21,35 @@ const searchProduct = require("../controllers/product/searchProduct");
 const filterProductController = require("../controllers/product/filterProduct");
 const forgotPasswordController = require("../controllers/user/ForgotPasswordController");
 
-
-
-
 const router = express.Router();
 
-router.post("/signup",userSignUpController);
-router.post("/signin",userSignInController);
-router.get("/user-details",authToken,userDetailsControllers);
-router.get("/userLogout",userLogout);
+router.post("/signup", userSignUpController);
+router.post("/signin", userSignInController);
+router.get("/user-details", authToken, userDetailsControllers);
+router.get("/userLogout", userLogout);
 
-//Admin Panel
+// Admin Panel
+router.get("/all-users", authToken, allUsersControllers);
+router.post("/update-user", authToken, updateUserConroller);
 
-router.get("/all-users",authToken,allUsersControllers);
-router.post("/update-user",authToken,updateUserConroller);
+// Products
+router.post("/upload-product", authToken, uploadProductController);
+router.get("/get-Product", getProductController);
+router.post("/update-product", authToken, updateProductController);
+router.get("/get-categoryProduct", getCategoryProductController);
+router.post("/category-product", getCategoryWiseProduct);
+router.post("/product-details", getProductDetails);
+router.get("/search", searchProduct);
+router.post("/filter-product", filterProductController);
 
-// Products 
-
-router.post("/upload-product",authToken,uploadProductController);
-router.get("/get-Product",getProductController);
-router.post("/update-product",authToken,updateProductController);
-router.get("/get-categoryProduct",getCategoryProductController);
-router.post("/category-product",getCategoryWiseProduct);
-router.post("/product-details",getProductDetails);
-router.get("/search",searchProduct);
-router.post("/filter-product",filterProductController);
-
-
-//user add to cart
-router.post("/addtocart",authToken,addToCartController);
-router.get("/countAddToCartProduct",authToken,countAddToCartProduct);
-router.get("/view-card-product",authToken,addToCartViewProduct);
-router.post("/update-cart-product",authToken,updateAddToCartProduct);
-router.post("/delete-cart-product",authToken,deleteAddToCartProduct);
+// User add to cart
+router.post("/addtocart", authToken, addToCartController);
+router.get("/countAddToCartProduct", authToken, countAddToCartProduct);
+router.get("/view-card-product", authToken, addToCartViewProduct);
+router.post("/update-cart-product", authToken, updateAddToCartProduct);
+router.post("/delete-cart-product", authToken, deleteAddToCartProduct);
 
 // Forgot Password Routes
-
 router.post("/forgot-password", forgotPasswordController);
-
 
 module.exports = router;
