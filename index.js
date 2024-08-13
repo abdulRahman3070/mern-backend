@@ -7,7 +7,9 @@ const router = require("./routes");
 require("dotenv").config();
 
 const app = express();
-
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 // Middleware
 app.use(cors({
   origin: process.env.FRONTEND_URL,
