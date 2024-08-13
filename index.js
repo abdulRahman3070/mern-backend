@@ -7,7 +7,9 @@ const router = require("./routes");
 require("dotenv").config();
 
 const app = express();
-
+app.get('/', (req, res) => {
+  res.send("");
+});
 // Middleware
 app.use(cors({
   origin: ["https://mern-frontend-ruddy-zeta.vercel.app/"],
