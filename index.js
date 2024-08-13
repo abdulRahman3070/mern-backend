@@ -7,12 +7,11 @@ const router = require("./routes");
 require("dotenv").config();
 
 const app = express();
-app.get('/', (req, res) => {
-  res.send("http://localhost:3000");
-});
+
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: ["https://mern-frontend-ruddy-zeta.vercel.app/"],
+  methods : ["GET","POST","PUT","DELETE"],
   credentials: true
 }));
 app.use(bodyParser.json({ limit: '10mb' }));
