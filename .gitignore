@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 /node_modules
 *.env
-=======
-node_modules
-*.env
->>>>>>> a2d6fff399154af9a26e4368846aa3b2d6da86e8
+.github/workflows/deploy.yml
